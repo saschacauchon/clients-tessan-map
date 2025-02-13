@@ -61,12 +61,17 @@ def main():
     # Get unique values for filtering from the CSV data
     # For example, filter by department ("AdministrativeArea2")
     departments = sorted(data['AdministrativeArea2'].dropna().unique().tolist())
-    department_options = ["All Departments"] + departments
-    selected_department = st.sidebar.selectbox("Select a Department", department_options)
     
-    # Apply filter if not "All Departments"
-    if selected_department != "All Departments":
-        data = data[data['AdministrativeArea2'] == selected_department]
+    placeholder = "Veuillez choisir un département"
+    department_options = [placeholder] + departments
+    selected_department = st.sidebar.selectbox("Sélectionnez un département", department_options)
+    
+    # If the placeholder is still selected, show an info message and stop
+    if selected_department == placeholder:
+        st.info("Veuillez choisir un département pour continuer.")
+        st.stop()
+
+    data = data[data['AdministrativeArea2'] == selected_department]
 
     # If no data remains after filtering, notify the user and exit
     if data.empty:
