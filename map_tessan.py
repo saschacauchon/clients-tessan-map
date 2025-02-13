@@ -2,13 +2,11 @@ import pandas as pd
 import streamlit as st
 import requests
 import folium
-from dotenv import load_dotenv
 import os
 from opencage.geocoder import OpenCageGeocode
 
 # Replace with your own OpenCage API key
-load_dotenv()
-OPEN_CAGE_API_KEY = os.get_env("API_KEY")
+OPEN_CAGE_API_KEY = st.secrets["API_KEY"]
 
 # =============================================================================
 # Caching functions to speed up repeated runs

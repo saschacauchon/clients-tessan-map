@@ -3,4 +3,3 @@ streamlit
 requests
 folium
 opencage
-python-dotenv
