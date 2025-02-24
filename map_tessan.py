@@ -145,7 +145,7 @@ def main():
         mime="text/html",
     )
 
-    st.metric(label=f"Nombre de dispositifs en {selected_department}", value=data.shape[0])
+    st.metric(label=f"Nombre de dispositifs en {selected_department}", value=data.Name.unique().size)
 
     display_dataframe = st.toggle("Voir en détail")
     columns_to_display = ['Name', 'Address', 'PostalCode', 'Locality', 'AdministrativeArea2']
