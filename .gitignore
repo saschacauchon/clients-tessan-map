@@ -1,3 +1,2 @@
-.env
 maps
-secrets.toml
+.streamlit/secrets.toml

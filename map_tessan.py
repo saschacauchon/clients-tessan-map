@@ -5,7 +5,9 @@ import folium
 import os
 from opencage.geocoder import OpenCageGeocode
 
-# Replace with your own OpenCage API key
+st.set_page_config(layout="wide")
+
+# If there is a problem with the current API
 OPEN_CAGE_API_KEY = st.secrets["API_KEY"]
 
 # =============================================================================
@@ -142,6 +144,13 @@ def main():
         file_name=map_filename,
         mime="text/html",
     )
+
+    st.metric(label=f"Nombre de dispositifs en {selected_department}", value=data.shape[0])
+
+    display_dataframe = st.toggle("Voir en détail")
+    columns_to_display = ['Name', 'Address', 'PostalCode', 'Locality', 'AdministrativeArea2']
+    if display_dataframe: 
+        st.dataframe(data[columns_to_display])
 
     st.components.v1.html(html_data, height=600, scrolling=True)
 
